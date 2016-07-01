@@ -4,8 +4,9 @@ Setting Up
 First Step
 ^^^^^^^^^^
 
-Text here
+Text here::
     
     print("hello")
     >> hello
     
+Back to normal.
