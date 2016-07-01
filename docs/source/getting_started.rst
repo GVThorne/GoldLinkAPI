@@ -1,8 +1,5 @@
-Setting Up
-==========
-
-First Step
-^^^^^^^^^^
+Getting Started
+===============
 
 Text here::
     
