@@ -334,13 +334,8 @@ texinfo_documents = [
 #
 # texinfo_no_detailmenu = False
 
-html_context = { 
-    'css_files': [
-        'https://media.readthedocs.org/css/sphinx_rtd_theme.css',
-        'https://media.readthedocs.org/css/readthedocs-doc-embed.css',
-        '_static/css/theme_overrides.css',
-    ],  
-  }
+html_theme = 'sphinx_rtd_theme'
+html_style = 'css/theme_overrides.css'
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
