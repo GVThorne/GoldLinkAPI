@@ -4861,7 +4861,7 @@ div[class^='highlight'] {
     border: 1px solid #e1e4e5;
     padding: 0px;
     overflow-x: auto;
-    background: #fff;
+    background: #fbffcc;
     margin: 1px 0 24px 0
 }
 
@@ -5315,17 +5315,17 @@ div[class^='highlight'] pre {
 }
 
 .wy-menu-vertical li.current {
-    background: #e3e3e3
+    background: #004d5d
 }
 
 .wy-menu-vertical li.current a {
-    color: gray;
-    border-right: solid 1px #c9c9c9;
+    color: #c2a204;
     padding: 0.4045em 2.427em
 }
 
 .wy-menu-vertical li.current a:hover {
-    background: #d6d6d6
+    background: #c2a204;
+	color: #03859f 
 }
 
 .wy-menu-vertical li code,
@@ -5344,30 +5344,29 @@ div[class^='highlight'] pre {
     margin-left: -1.2em;
     font-size: 0.8em;
     line-height: 1.6em;
-    color: #4d4d4d
+    color: #03859f;
 }
 
 .wy-menu-vertical li.on a,
 .wy-menu-vertical li.current>a {
-    color: #404040;
+    color: #c2a204;
     padding: 0.4045em 1.618em;
     font-weight: bold;
     position: relative;
-    background: #fcfcfc;
+    background: #03859f;
     border: none;
-    border-bottom: solid 1px #c9c9c9;
-    border-top: solid 1px #c9c9c9;
     padding-left: 1.618em -4px
 }
 
 .wy-menu-vertical li.on a:hover,
 .wy-menu-vertical li.current>a:hover {
-    background: #fcfcfc
+    background: #c2a204;
+	color: #03859f
 }
 
 .wy-menu-vertical li.on a:hover span.toctree-expand,
 .wy-menu-vertical li.current>a:hover span.toctree-expand {
-    color: gray
+    color: #03859f
 }
 
 .wy-menu-vertical li.on a span.toctree-expand,
@@ -5375,7 +5374,7 @@ div[class^='highlight'] pre {
     display: block;
     font-size: 0.8em;
     line-height: 1.6em;
-    color: #333
+    color: #c2a204
 }
 
 .wy-menu-vertical li.toctree-l1.current li.toctree-l2>ul,
@@ -5389,13 +5388,12 @@ div[class^='highlight'] pre {
 }
 
 .wy-menu-vertical li.toctree-l2.current>a {
-    background: #c9c9c9;
+    background: #03859f;
     padding: 0.4045em 2.427em
 }
 
 .wy-menu-vertical li.toctree-l2.current li.toctree-l3>a {
     display: block;
-    background: #c9c9c9;
     padding: 0.4045em 4.045em
 }
 
@@ -5404,7 +5402,7 @@ div[class^='highlight'] pre {
 }
 
 .wy-menu-vertical li.toctree-l2 span.toctree-expand {
-    color: #a3a3a3
+    color: #c2a204
 }
 
 .wy-menu-vertical li.toctree-l3 {
@@ -5412,9 +5410,11 @@ div[class^='highlight'] pre {
 }
 
 .wy-menu-vertical li.toctree-l3.current>a {
-    background: #bdbdbd;
+    background: #03859f;
+	color: #c2a204;
     padding: 0.4045em 4.045em
 }
+
 
 .wy-menu-vertical li.toctree-l3.current li.toctree-l4>a {
     display: block;
@@ -5462,22 +5462,22 @@ div[class^='highlight'] pre {
     display: block;
     position: relative;
     font-size: 90%;
-    color: #b3b3b3
+    color: #03859f
 }
 
 .wy-menu-vertical a:hover {
-    background-color: #4e4a4a;
+    background-color: #c2a204;
     cursor: pointer
 }
 
 .wy-menu-vertical a:hover span.toctree-expand {
-    color: #b3b3b3
+    color: #03859f
 }
 
 .wy-menu-vertical a:active {
     background-color: #2980B9;
     cursor: pointer;
-    color: #fff
+    color: #5ccee4
 }
 
 .wy-menu-vertical a:active span.toctree-expand {
@@ -5490,7 +5490,6 @@ div[class^='highlight'] pre {
     padding: 0.809em;
     margin-bottom: 0.809em;
     z-index: 200;
-    background-color: #2980B9;
     text-align: center;
     padding: 0.809em;
     display: block;
@@ -5502,7 +5501,7 @@ div[class^='highlight'] pre {
     width: 100%;
     border-radius: 50px;
     padding: 6px 12px;
-    border-color: #2472a4
+    border-color: #c2a204
 }
 
 .wy-side-nav-search img {
