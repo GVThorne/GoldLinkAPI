@@ -27,23 +27,8 @@ import os
 #
 # needs_sphinx = '1.0'
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-  import sphinx_rtd_theme
-  html_theme = 'sphinx_rtd_theme'
-  html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-  html_style = 'css/theme_overrides.css'
-else:
-  html_context = { 
-    'css_files': [
-        'https://media.readthedocs.org/css/sphinx_rtd_theme.css',
-        'https://media.readthedocs.org/css/readthedocs-doc-embed.css',
-        '_static/css/theme_overrides.css',
-    ],  
-  }   
-
-# html_style = 'css/themeoverrides.css'
+html_style = 'css/theme_overrides.css'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
