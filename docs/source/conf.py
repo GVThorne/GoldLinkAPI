@@ -37,9 +37,10 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 else:
   html_context = { 
     'css_files': [
+        '_static/css/theme_overrides.css',
         'https://media.readthedocs.org/css/sphinx_rtd_theme.css',
         'https://media.readthedocs.org/css/readthedocs-doc-embed.css',
-        '_static/css/theme_overrides.css',
+        
     ],  
   }   
 
