@@ -17,7 +17,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -342,8 +342,6 @@ html_context = {
     ],  
   }
 
-import os
-
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 if not on_rtd:  # only import and set the theme if we're building docs locally
@@ -356,6 +354,6 @@ else:
     'css_files': [
         'https://media.readthedocs.org/css/sphinx_rtd_theme.css',
         'https://media.readthedocs.org/css/readthedocs-doc-embed.css',
-        '_static/css/theme_overrides.css',
-    ],  
+        '_static/css/theme_overrides.css'
+    ]
   }
