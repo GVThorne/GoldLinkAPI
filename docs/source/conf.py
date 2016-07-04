@@ -38,16 +38,12 @@ else:
   html_context = { 
     'css_files': [
         'https://media.readthedocs.org/css/readthedocs-doc-embed.css',
-<<<<<<< HEAD
-        
     ],
 	"display_github": False, # Add 'Edit on Github' link instead of 'View page source'
 	"last_updated": True,
 	"commit": False,	
-=======
         '_static/css/theme_overrides.css',
     ],  
->>>>>>> refs/remotes/origin/master
   }   
 
 # html_style = 'css/theme_overrides.css'
