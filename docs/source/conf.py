@@ -41,7 +41,10 @@ else:
         'https://media.readthedocs.org/css/sphinx_rtd_theme.css',
         'https://media.readthedocs.org/css/readthedocs-doc-embed.css',
         
-    ],  
+    ],
+	"display_github": False, # Add 'Edit on Github' link instead of 'View page source'
+	"last_updated": True,
+	"commit": False,	
   }   
 
 # html_style = 'css/theme_overrides.css'
