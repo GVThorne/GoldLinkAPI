@@ -42,6 +42,8 @@ else:
         
     ],
 	'display_github': False,
+	'last_updated': True,
+	'commit': False,
   }   
 
 # html_style = 'css/theme_overrides.css'
