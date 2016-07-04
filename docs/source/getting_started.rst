@@ -1,9 +1,24 @@
 Getting Started
 ===============
 
-Text here::
-    
-    print("hello")
-    >> hello
-    
-Back to normal.
+****************
+What is the API?
+****************
+
+**********
+Connecting
+**********
+
+Address
+#######
+
+Authentication
+##############
+
+*****************
+HTTP SOAP Example
+*****************
+
+***************
+Handling Errors
+***************
