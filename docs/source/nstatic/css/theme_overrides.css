@@ -5388,7 +5388,6 @@ div[class^='highlight'] pre {
 }
 
 .wy-menu-vertical li.toctree-l2.current>a {
-    background: #03859f;
     padding: 0.4045em 2.427em
 }
 
@@ -5418,7 +5417,6 @@ div[class^='highlight'] pre {
 
 .wy-menu-vertical li.toctree-l3.current li.toctree-l4>a {
     display: block;
-    background: #bdbdbd;
     padding: 0.4045em 5.663em;
     border-top: none;
     border-bottom: none
