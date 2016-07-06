@@ -41,7 +41,7 @@ Authentication is performed using NTLM Authentication. Therefore, to use the API
 HTTP SOAP Example
 *****************
 
-The following is a sample SOAP 1.2 request and response for the method **AddItem**. The placeholders shown needs to be replaced with actual values. This example was found by visiting the Gold-Link URL and selecting the **AddItem** method, you can obtain similar examples for the other methods.
+The following is a sample SOAP 1.2 request and response for the method :ref:`AddItem`. The placeholders shown needs to be replaced with actual values. This example was found by visiting the Gold-Link URL and selecting the :ref:`AddItem` method, you can obtain similar examples for the other methods.
 
 **Request**
 
