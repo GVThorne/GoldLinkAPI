@@ -11,6 +11,22 @@ Methods
 GetVersion
 **********
 
+**Request**
+
+=======================		=========
+Attribute					Type
+=======================		=========
+<GetVersion xmlns="" />		XML Node
+=======================		=========
+
+**Response**
+
+================	========
+Attribute			Type
+================	========
+GetVersionResult	String
+================	========
+
 All that is required for a SOAP request of **GetVerson** to be made, is to add the ``<GetVersion />`` node as the envelope body. For example, the following request:
 
 .. code-block:: html
@@ -42,8 +58,26 @@ As you can see, within the ``<GetVersionResult>`` node, the Gold-Vision version 
 FindItem
 ********
 
-For a **FindItem** request, you will be required to send an ``objectType`` and ``filters`` node.  
+**Request**
 
+==========	==================================================
+Attribute	Type
+==========	==================================================
+objectType	Account or Contact or AccountActivity or Quote ...
+filters		XML
+==========	==================================================
+
+**Response**
+
+==============	========
+Attribute		Type
+==============	========
+FindItemResult	XML
+success			Boolean
+message			String
+==============	========
+
+For a **FindItem** request, you will be required to send an ``objectType`` and ``filters`` node.  
 
 For this example, I will be looking to return the Account that has a **SUMMARY** of 'Gold-Vision'. This is the request that will be sent:
 
@@ -96,6 +130,24 @@ As you can see, a single record has been returned with a **SUMMARY** of 'Gold-Vi
 GetObjectDef
 ************
 
+**Request**
+
+==========	==================================================
+Attribute	Type
+==========	==================================================
+objectType	Account or Contact or AccountActivity or Quote ...
+==========	==================================================
+
+**Response**
+
+==================		========
+Attribute				Type
+==================		========
+GetObjectDefResult		XML
+success					Boolean
+message					String
+==================		========
+
 The GetObjectDef request only requires you to include the ``objectType`` node with the request. From this, you will be returned with a response that includes ObjectDef information related to the value included in ``objectType`` such as field names and field labels.
 
 For example, to find more information about the Account object, the following request can be made:
@@ -147,6 +199,26 @@ Again, just like :ref:`FindItem`, a ``success`` node is returned along with the 
 AddItem
 *******
 
+**Request**
+
+==========	==================================================
+Attribute	Type
+==========	==================================================
+objectType	Account or Contact or AccountActivity or Quote ...
+xmlData		XML
+==========	==================================================
+
+**Response**
+
+==============		=========
+Attribute			Type
+==============		=========
+AddItemResult		Boolean
+returnId			String
+success				Boolean
+message				String
+==============		=========
+
 An **AddItem** request is used to add new items such as Accounts to Gold-Vision. To add a new item in Gold-Vision, you are required to make a request with an ``objectType`` and ``xmlData`` node. The ``xmlData`` node is to contain data for each field related to your new item that you are adding.
 
 For this example, I am looking to add a new Account into Gold-Vision with the **SUMMARY** of "*Esteiro*":
@@ -182,13 +254,34 @@ This request will return a response of:
 	   </soap:Body>
 	</soap:Envelope>
 	
-If successful, the response will return the new item ID under ``returnId``. The above example will have created a new Account just a `SUMMARY` value and nothing else. To create a new Account with more data, you will be required to nest the relevant ``field`` nodes within ``record``.
+If successful, the response will return the new item ID under ``returnId``. The above example will have created a new Account with just a **SUMMARY** value and nothing else. To create a new Account with more data, you will be required to nest the relevant ``field`` nodes within the ``record`` node.
 
 .. _UpdateItem:
 
 **********
 UpdateItem
 **********
+
+**Request**
+
+==========	================================================================================================
+Attribute	Type
+==========	================================================================================================
+objectType	Account or Contact or AccountActivity or Quote ...
+xmlData		XML
+id			String
+overwrite	AllFieldsPresent or AllFieldsPresentExceptBlanks or AllFieldsPresentExceptBlanksWhereTargetEmpty
+==========	================================================================================================
+
+**Response**
+
+================	=========
+Attribute			Type
+================	=========
+UpdateItemResult	Boolean
+success				Boolean
+message				String
+================	=========
 
 To make a request using **UpdateItem**, you will be required to make a request with an ``objectType``, ``xmlData``, ``id`` and ``overwrite`` node. The ``overwrite`` node can either have a value of **AllFieldsPresent**, **AllFieldsPresentExceptBlanks** or **AllFieldsPresentExceptBlanksWhereTargetEmpty**.
 
@@ -233,6 +326,26 @@ This response has indicated that the update has been successful.
 *******
 GetItem
 *******
+
+**Request**
+
+==================		==================================================
+Attribute				Type
+==================		==================================================
+objectType				Account or Contact or AccountActivity or Quote ...
+id						String
+returnEmptyFields		Boolean
+==================		==================================================
+
+**Response**
+
+==============		========
+Attribute			Type
+==============		========
+GetItemResult		XML
+success				Boolean
+message				String
+==============		========
 
 To make a request using **GetItem**, you will be required to make a request with an ``objectType``, ``id`` and ``returnEmptyFields`` node. The ``returnEmptyFields`` node will accept a value of either **true** (1) or **false** (0). 
 
