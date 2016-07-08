@@ -1,11 +1,13 @@
 Gold-Vision Items
 =================
 
+.. _GVModelDiagram:
+
 *************************
 Gold-Vision Model Diagram
 *************************
 
-The diagram below helps you to gain a basic understanding in the structure for Gold-Vision items. So for example, if you were to create a new Contact in Gold-Vision, you can see that it is dependant on the Account item. Therefore, to create a new Contact, you either have to assign the contact to an existing Account or Create a new Account for the new Contact that is to be created. 
+The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, if you were to create a new Contact in Gold-Vision, you can see that it is dependant on the Account item. Therefore, to create a new Contact, you either have to assign the contact to an existing Account or Create a new Account for the new Contact that is to be created. 
 
 .. image:: images/GVModel.png
    :alt: Gold Vision Logo
@@ -82,7 +84,7 @@ In the event that my :ref:`FindItem` request does return a result, you may decid
 	
 Using the ``record id`` from the response, we can use :ref:`GetItem` to return all the account information for **Holding Ltd**. The request will look like this:
 
-.. code-block: html
+.. code-block:: html
 
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
 	   <soapenv:Header/>
@@ -186,7 +188,7 @@ In the event that you have made a :ref:`FindItem` request that was successful bu
 	   </soapenv:Body>
 	</soapenv:Envelope>
 	
-This request will create a new Account that will also have data set for it's **Primary Address** **City/Town** and **Country** fields.
+This request will create a new Account that will also have data set for it's **Primary Address**, **City/Town** and **Country** fields.
 
 As a result, the response will return with the Account ID of the newly created Account.
 
@@ -194,6 +196,58 @@ As a result, the response will return with the Account ID of the newly created A
 Contact
 *******
 
+First of all, before we look to create a new contact we need to have a look at the :ref:`GVModelDiagram` at the top of this page. As we can see, A Contact record is dependant on an Account record. Therefore, to create a Contact in Gold-Vision via Gold-Link, we need to provide an **AC_ID** with it.
+
+So the first thing to do would be to make a :ref:`FindItem` request to get an **AC_ID** of an Account. When creating a new Contact, this **AC_ID** is required to be included otherwise the request will fail. The following request is to add a **Joe Bloggs** to the **Holdings Ltd** Account.
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:AddItem>
+			 <gold:objectType>Contact</gold:objectType>
+			 <gold:xmlData>
+				<gvdata xmlns="">
+				<record>
+					<field name="AC_ID">72f46715-49f6-453c-8c63-201e0358459e</field>
+					<field name="FIRSTNAME">Joe</field>
+					<field name="LASTNAME">Bloggs</field>
+				</record>
+				</gvdata>
+			 </gold:xmlData>
+		  </gold:AddItem>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+
+As a result, the ``returnId`` node will contain the new **ACC_ID** of the new Contact. 
+
 ***********
 Opportunity
 ***********
+
+To create an Opportunity, you are required to provide an **AC_ID** with the :ref:`AddItem` request. However, Opportunities, Activities, Projects, Quotes and Profiles allow you to attach a Contact from the related Account as well. However, this isn't essential and if no **ACC_ID** is provided, the Contact field will display as **Not Assigned**.
+
+Therefore, the process for creating an Opportunity with a Contact assigned will require you to make two :ref:`FindItem` requests. The first will be to find the **AC_ID** of an Account and the second will be to find a Contact's **ACC_ID** that has that also has this **AC_ID**. An :ref:`AddItem` request can then be made to create an Opportunity with an **AC_ID** and an **ACC_ID**. The request will look like this:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:AddItem>
+			 <gold:objectType>Opportunity</gold:objectType>
+			 <gold:xmlData>
+				<gvdata xmlns="">
+				<record>
+					<field name="AC_ID">72f46715-49f6-453c-8c63-201e0358459e</field>
+					<field name="SUMMARY">Sales Op</field>
+					<field name="ACC_ID">12422155-e45c-4ee7-b5dc-228f004425cf</field>
+				</record>
+				</gvdata>
+			 </gold:xmlData>
+		  </gold:AddItem>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+	
+As a result, the ``returnId`` node will contain the new **OP_ID** of the new Opportunity.	
