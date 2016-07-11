@@ -7,21 +7,33 @@ Gold-Vision Items
 Gold-Vision Model Diagram
 *************************
 
-The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, if you were to create a new Contact in Gold-Vision, you can see that it is dependant on the Account item. Therefore, to create a new Contact, you either have to assign the contact to an existing Account or Create a new Account for the new Contact that is to be created. 
+The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, if you were to create a new Contact in Gold-Vision, you can see that it is dependant on the Account item. Therefore, to create a new Contact, you will have to attach it to an existing Account. 
 
 Core Items
 ##########
 
 .. image:: images/GVModel.png
-   :alt: Gold Vision Logo
+   :alt: Gold-Vision Item Model Diagram
    :align: center
    
 Seminars
 ########
  
 .. image:: images/SeminarModelGV.png
-   :alt: Gold Vision Logo
+   :alt: Gold-Vision Seminar Model Diagram
    :align: center
+
+As you can see, things can become a little more difficult if you are looking to create a new Seminar Session Attendee record compared to a simple Contact record. By looking at the above diagram, to create a new Seminar Session Attendee record in Gold-Vision, you will need to have a Seminar Session and a Seminar Booking Attendee. However, the Seminar Session is dependant on a Seminar of which is dependant on an Account. Also, the Seminar Booking Attendee is dependant on a Seminar Booking of which is dependant on a Seminar Session and an Account.
+
+Therefore, to create a Seminar Session Attendee record, you are required to have a Seminar Session, Seminar Booking Attendee, Seminar Booking, Seminar and Account. In contrast, to create a Contact, you are only required to have an Account.
+   
+.. note::
+
+    **Campaigns** and **Leads** can be added into Gold-Vision without the need of an **Account**. The contacts that are added to a **Campaign** will be linked to an **Account**. **Leads** exist as a separate module to Gold-Vision under **Leads Management**. 
+   
+.. warning::
+
+    Using :ref:`AddItem` with an ``objectType`` value of **Campaign** will add a Campaign in Legacy Campaign mode and not in New Campaign mode.
 
 *******
 Account
@@ -174,7 +186,7 @@ This should return with a response in which ``success`` has resulted in **true**
 Creating a new Account
 ######################
 
-In the event that you have made a :ref:`FindItem` request that was successful but returned 0 accounts with a SUMMARY of **Holding Ltd**, you may feel it is now safe to create a new Account with the same name. To do so, you would have to make an :ref:`AddItem` request as follows:
+In the event that you have made a :ref:`FindItem` request that was successful but returned 0 Accounts with a SUMMARY of **Holding Ltd**, you may feel it is now safe to create a new Account with the same name. To do so, you would have to make an :ref:`AddItem` request as follows:
 
 .. code-block:: html
 
@@ -200,7 +212,11 @@ In the event that you have made a :ref:`FindItem` request that was successful bu
 	
 This request will create a new Account that will also have data set for it's **Primary Address**, **City/Town** and **Country** fields.
 
-As a result, the response will return with the Account ID of the newly created Account.
+As a result, the response will return with the Account ID of the newly created Account and the following record will appear in Gold-Vision:
+
+.. image:: images/HoldingLtdRecord.png
+   :alt: Holding Ltd Account Record
+   :align: center
 
 *******
 Contact
@@ -236,7 +252,7 @@ As a result, the ``returnId`` node will contain the new **ACC_ID** of the new Co
 Opportunity
 ***********
 
-To create an Opportunity, you are required to provide an **AC_ID** with the :ref:`AddItem` request. However, Opportunities, Activities, Projects, Quotes and Profiles allow you to attach a Contact from the related Account as well. However, this isn't essential and if no **ACC_ID** is provided, the Contact field will display as **Not Assigned**.
+To create an Opportunity, you are required to provide an **AC_ID** with the :ref:`AddItem` request. However, Opportunities, Activities, Projects, Quotes and Profiles allow you to attach a Contact from the related Account as well. Although, this isn't essential and if no **ACC_ID** is provided, the Contact field will display as **Not Assigned**.
 
 Therefore, the process for creating an Opportunity with a Contact assigned will require you to make two :ref:`FindItem` requests. The first will be to find the **AC_ID** of an Account and the second will be to find a Contact's **ACC_ID** that has that also has this **AC_ID**. An :ref:`AddItem` request can then be made to create an Opportunity with an **AC_ID** and an **ACC_ID**. The request will look like this:
 
@@ -251,7 +267,7 @@ Therefore, the process for creating an Opportunity with a Contact assigned will 
 				<gvdata xmlns="">
 				<record>
 					<field name="AC_ID">72f46715-49f6-453c-8c63-201e0358459e</field>
-					<field name="SUMMARY">Sales Op</field>
+					<field name="SUMMARY">Sales Opportunity</field>
 					<field name="ACC_ID">12422155-e45c-4ee7-b5dc-228f004425cf</field>
 				</record>
 				</gvdata>
@@ -260,4 +276,8 @@ Therefore, the process for creating an Opportunity with a Contact assigned will 
 	   </soapenv:Body>
 	</soapenv:Envelope>
 	
-As a result, the ``returnId`` node will contain the new **OP_ID** of the new Opportunity.	
+As a result, the ``returnId`` node will contain the new **OP_ID** of the new Opportunity and the following record will appear within your Gold-Vision:
+
+.. image:: images/SalesOppRecord.png
+   :alt: Sales Opportunity Record
+   :align: center

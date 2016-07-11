@@ -16,7 +16,7 @@ GetVersion
 =======================		=========
 Attribute					Type
 =======================		=========
-<GetVersion xmlns="" />		XML Node
+Empty						N/A
 =======================		=========
 
 **Response**
@@ -27,7 +27,7 @@ Attribute			Type
 GetVersionResult	String
 ================	========
 
-All that is required for a SOAP request of **GetVerson** to be made, is to add the ``<GetVersion />`` node as the envelope body. For example, the following request:
+No parameters are required to make a **GetVersion** request. For example, the following request:
 
 .. code-block:: html
 
@@ -79,7 +79,7 @@ message			String
 
 For a **FindItem** request, you will be required to send an ``objectType`` and ``filters`` node.  
 
-For this example, I will be looking to return the Account that has a **SUMMARY** of 'Gold-Vision'. This is the request that will be sent:
+For this example, I will be looking to return all accounts that have a SUMMARY value of 'Gold-Vision'. This is the request that will be sent:
 
 .. code-block:: html
     
@@ -116,13 +116,13 @@ Here is the response:
 	   </soap:Body>
 	</soap:Envelope>
 
-As you can see, a single record has been returned with a **SUMMARY** of 'Gold-Vision. As well as this, another node ``success`` has been returned to inform you whether the request originally sent was successful or not.
+As you can see, a single record has been returned with a SUMMARY of 'Gold-Vision'. As well as this, another node ``success`` has been returned to indicate whether the request originally sent was successful or not.
 
 .. note::
 
    * If you were looking to include more fields for each record returned, simply add a **<field>** node within ``filters``. For example, to include **CREATED_DATE** within the results returned above, the ``filters`` node will look like ``<filters xmlns=""><filter dbcolumn="SUMMARY" value="Gold-Vision" /><field dbcolumn="CREATED_DATE" /></filters>``.
    
-   * By having neither **<field>** or **<filters>** within ``filters``, the result list will include all Accounts.
+   * By having neither **<field>** nor **<filters>** within ``filters``, the result list will include all Accounts.
 
 .. _GetObjectDef:
 
@@ -221,7 +221,7 @@ message				String
 
 An **AddItem** request is used to add new items such as Accounts to Gold-Vision. To add a new item in Gold-Vision, you are required to make a request with an ``objectType`` and ``xmlData`` node. The ``xmlData`` node is to contain data for each field related to your new item that you are adding.
 
-For this example, I am looking to add a new Account into Gold-Vision with the **SUMMARY** of "*Esteiro*":
+For this example, the following request will add a new Account into Gold-Vision with the SUMMARY field set to have a value of 'Esteiro':
 
 .. code-block:: html
 
@@ -254,7 +254,7 @@ This request will return a response of:
 	   </soap:Body>
 	</soap:Envelope>
 	
-If successful, the response will return the new item ID under ``returnId``. The above example will have created a new Account with just a **SUMMARY** value and nothing else. To create a new Account with more data, you will be required to nest the relevant ``field`` nodes within the ``record`` node.
+If successful, the response will return the new item ID under ``returnId``. The above example will have created a new Account with just a SUMMARY value and nothing else. To create a new Account with more data, you will be required to nest the relevant ``field`` nodes within the ``record`` node.
 
 .. _UpdateItem:
 
@@ -285,7 +285,7 @@ message				String
 
 To make a request using **UpdateItem**, you will be required to make a request with an ``objectType``, ``xmlData``, ``id`` and ``overwrite`` node. The ``overwrite`` node can either have a value of **AllFieldsPresent**, **AllFieldsPresentExceptBlanks** or **AllFieldsPresentExceptBlanksWhereTargetEmpty**.
 
-The following request is to update the **SUMMARY** field to "*Esteiro*" for an Account with the given ID. The following value given for the ``overwrite`` node will overwrite the existing data even if it is blank.
+The following request is to update the SUMMARY field to have a value of 'Esteiro' for an Account with the given ID. The following value given for the ``overwrite`` node will overwrite the existing data even if it is blank.
 
 .. code-block:: html
     
