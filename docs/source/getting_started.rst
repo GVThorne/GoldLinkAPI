@@ -10,7 +10,7 @@ The Gold-Link API is a SOAP based Web Service that is installed as part of the c
 In order to use the API you must be using a logical programming language that supports SOAP Web Service interoperability. The recommended choice on a Windows platform is to use .NET Framework and on a Linux platform is to use PHP. 
 
 .. note:: 
-    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Referenece" option.
+    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Reference" option.
 
 **********
 Connecting
@@ -86,5 +86,7 @@ The following is a sample SOAP 1.2 request and response for the method :ref:`Add
 Handling Errors
 ***************
 
-Part of the XML response for any API call is **success** and **message**. If the API call failed for any reason, **success** will be false and **message** will be the error message. There are also Gold-Vision error logs that you can access from within the administration console under **Settings > Logging**, look for the log file title **Gold-Link_{date}.txt**
+Part of the XML response for any API call is **success** and **message**. If the API call failed for any reason, **success** will be false and **message** will contain the error message.
+
+The Gold-Vision log files will contain detailed error messages and can be accessed through **Settings > Logging** within the Administration Console. The file containing the Gold-Link errors will be labelled as **Gold-Link_{date}.txt**.
 
