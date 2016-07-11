@@ -9,7 +9,17 @@ Gold-Vision Model Diagram
 
 The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, if you were to create a new Contact in Gold-Vision, you can see that it is dependant on the Account item. Therefore, to create a new Contact, you either have to assign the contact to an existing Account or Create a new Account for the new Contact that is to be created. 
 
+Core Items
+##########
+
 .. image:: images/GVModel.png
+   :alt: Gold Vision Logo
+   :align: center
+   
+Seminars
+########
+ 
+.. image:: images/SeminarModelGV.png
    :alt: Gold Vision Logo
    :align: center
 
