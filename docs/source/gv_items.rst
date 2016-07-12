@@ -53,7 +53,9 @@ First of all I am going to make a Gold-Link request using :ref:`FindItem` to fin
 		  <gold:FindItem>
 			 <gold:objectType>Account</gold:objectType>
 			 <gold:XmlFilters>
-				<filters xmlns=""><filter dbcolumn="SUMMARY" value="Holdings Ltd" /></filters>
+				<filters xmlns="">
+					<filter dbcolumn="SUMMARY" value="Holdings Ltd" />
+				</filters>
 			 </gold:XmlFilters>
 		  </gold:FindItem>
 	   </soapenv:Body>
@@ -280,4 +282,139 @@ As a result, the ``returnId`` node will contain the new **OP_ID** of the new Opp
 
 .. image:: images/SalesOppRecord.PNG
    :alt: Sales Opportunity Record
+   :align: center
+   
+*******
+Seminar
+*******
+
+For this section we are going to run through the process required to add a Seminar Session Attendee into Gold-Vision. Looking at the :ref:`GVModelDiagram` we can see that there are a  lot of requirements for a Seminar Session Attendee to exist.
+
+First of all we are going to create a Seminar. This is the request to be made:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:AddItem>
+			 <gold:objectType>Seminar</gold:objectType>
+			 <gold:xmlData>
+				<gvdata xmlns="">
+				<record>
+					<field name="SUMMARY">Sales Demo</field>
+					<field name="AC_ID">72f46715-49f6-453c-8c63-201e0358459e</field>
+				</record>
+				</gvdata>
+			 </gold:xmlData>
+		  </gold:AddItem>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+
+The above request will create a Seminar called 'Sales Demo' for the Account 'Holding Ltd'.
+
+Now we have a Seminar, the next step would be to create a Seminar Session for our attendee to attend. This is the request that will be made:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:AddItem>
+			 <gold:objectType>SeminarSession</gold:objectType>
+			 <gold:xmlData>
+				<gvdata xmlns="">
+				<record>
+					<field name="SUMMARY">Morning Session</field>
+					<field name="SEM_ID">687bf90e-a4a3-44fa-8502-145605d61243</field>
+					<field name="PLACES">10</field>
+				</record>
+				</gvdata>
+			 </gold:xmlData>
+		  </gold:AddItem>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+	
+.. note::
+
+    A Seminar Session only requires a SUMMARY and SEM_ID. However, in order to make a Seminar Booking, the Seminar Session is required to have places available. Therefore, I have created a Seminar Session that has 10 places available to allow for bookings to take place.
+	
+Now we have our Seminar Session, again by looking at the :ref:`GVModelDiagram`, we can see that the only other dependency for a Seminar Session Attendee is to have a Seminar Booking Attendee.
+
+Before a Seminar Booking Attendee can be made, a Seminar Booking is required to exist. I will create a Seminar Booking with the following request:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:AddItem>
+			 <gold:objectType>SeminarBooking</gold:objectType>
+			 <gold:xmlData>
+				<gvdata xmlns="">
+				<record>
+					<field name="SEM_ID">687bf90e-a4a3-44fa-8502-145605d61243</field>
+					<field name="SEMS_ID">d83a773d-32a3-4127-afbf-e66695600ecc</field>
+					<field name="AC_ID">72f46715-49f6-453c-8c63-201e0358459e</field>
+					<field name="REFERENCE">SES001</field>
+				</record>
+				</gvdata>
+			 </gold:xmlData>
+		  </gold:AddItem>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+	
+.. note::
+
+    Although the request has been successful, for a Seminar Booking to appear in Gold-Vision, it needs to have a Seminar Booking Attendee. However, a Seminar Booking Attendee request cannot be made beforehand as it is required to have a SEMB_ID.
+	
+The next step to be made will be to create a Seminar Booking Attendee for the Seminar Booking that we have just created:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:AddItem>
+			 <gold:objectType>SeminarBookingAttendee</gold:objectType>
+			 <gold:xmlData>
+				<gvdata xmlns="">
+				<record>
+					<field name="SEMB_ID">828048a9-2f39-4cae-a065-3c0da64c6353</field>
+					<field name="AC_ID">72f46715-49f6-453c-8c63-201e0358459e</field>
+					<field name="ACC_ID">12422155-e45c-4ee7-b5dc-228f004425cf</field>
+				</record>
+				</gvdata>
+			 </gold:xmlData>
+		  </gold:AddItem>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+	
+The above request has now created a Seminar Booking Attendee using the Contact 'Joe Bloggs'. The required fields for this request are SEMB_ID and AC_ID. If no ACC_ID is provided, a Seminar Booking Attendee will be added as 'Anonymous'.
+
+Now that all the prerequisites are met, we can finally make a request to add a new Seminar Session Attendee. This is the request that will be made:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:AddItem>
+			 <gold:objectType>SeminarSessionAttendee</gold:objectType>
+			 <gold:xmlData>
+				<gvdata xmlns="">
+				<record>
+					<field name="SEMBA_ID">ddf4dbcd-53af-4b6e-aef8-bf55f6ff7ab8</field>
+					<field name="SEMS_ID">d83a773d-32a3-4127-afbf-e66695600ecc</field>
+				</record>
+				</gvdata>
+			 </gold:xmlData>
+		  </gold:AddItem>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+	
+A Seminar Session Attendee will now appear in your Gold-Vision like below:
+
+.. image:: images/SEMSRecord.PNG
+   :alt: Seminar Session Record
    :align: center
