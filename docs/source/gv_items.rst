@@ -214,7 +214,7 @@ This request will create a new Account that will also have data set for it's **P
 
 As a result, the response will return with the Account ID of the newly created Account and the following record will appear in Gold-Vision:
 
-.. image:: images/HoldingLtdRecord.png
+.. image:: images/HoldingLtdRecord.PNG
    :alt: Holding Ltd Account Record
    :align: center
 
@@ -278,6 +278,6 @@ Therefore, the process for creating an Opportunity with a Contact assigned will 
 	
 As a result, the ``returnId`` node will contain the new **OP_ID** of the new Opportunity and the following record will appear within your Gold-Vision:
 
-.. image:: images/SalesOppRecord.png
+.. image:: images/SalesOppRecord.PNG
    :alt: Sales Opportunity Record
    :align: center
