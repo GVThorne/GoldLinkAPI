@@ -418,3 +418,108 @@ A Seminar Session Attendee will now appear in your Gold-Vision like below:
 .. image:: images/SEMSRecord.PNG
    :alt: Seminar Session Record
    :align: center
+   
+*************
+Phone Systems
+*************
+
+LogCall
+########
+
+It is possible to log incoming and outgoing telephone calls within Gold-Vision using Gold-Link. To do so, you can make a **LogCall** request like below:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:LogCall>
+			 <gold:accountId>71fb89cb-92ad-4973-8293-d43f1cd98673</gold:accountId>
+			 <gold:contactId>ca194711-f378-48c4-88f2-b8ae22207091</gold:contactId>
+			 <gold:number>01234 567890</gold:number>
+			 <gold:inbound>true</gold:inbound>
+		  </gold:LogCall>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+
+This request will return a result with a ``success`` node and a ``message`` node. If ``success`` appears as 'false', the ``message`` node will display the error that caused the request to fail.
+
+.. note::
+
+    It is possible to send this request without a ``contactId`` value. By leaving this node empty, a telephone call will be entered into Gold-Vision against the given Account rather than against a Contact.
+	
+LogCallWithDuration
+###################
+
+An extension to the **LogCall** request is to make a **LogCallWithDuration** request that includes additional data to indicate how long the telephone call had lasted.
+
+This is what a **LogCallWithDuration** request will look like:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:LogCallwithDuration>
+			 <gold:accountId>71fb89cb-92ad-4973-8293-d43f1cd98673</gold:accountId>
+			 <gold:contactId>ca194711-f378-48c4-88f2-b8ae22207091</gold:contactId>
+			 <gold:number>01234 567890</gold:number>
+			 <gold:inbound>true</gold:inbound>
+			 <gold:duration>3</gold:duration>
+		  </gold:LogCallwithDuration>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+	
+This request adds an inbound telephone call against the Contact **Joe Bloggs** and Account **Holding Ltd** as well as giving the record a duration value of **3**.
+
+LookupPhoneNumber
+#################
+
+This request is useful when looking to return all matching Contacts and Accounts with the input of a telephone number. The request will look similar to this:
+
+.. code-block:: html
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gold="http://service.gold-vision.com/gold-link">
+	   <soapenv:Header/>
+	   <soapenv:Body>
+		  <gold:LookupPhoneNumber>
+			 <gold:number>01234 567890</gold:number>
+		  </gold:LookupPhoneNumber>
+	   </soapenv:Body>
+	</soapenv:Envelope>
+	
+The response will return a ``list`` node that will contain both ``account`` and ``contact`` records if any match the telephone number sent with the original request. This is the sort of response that you are likely to receive:
+
+.. code-block:: html
+
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	   <soap:Body>
+		  <LookupPhoneNumberResponse xmlns="http://service.gold-vision.com/gold-link">
+			 <LookupPhoneNumberResult>
+				<gvdata xmlns="">
+				   <list>
+					  <account id="71fb89cb-92ad-4973-8293-d43f1cd98673">
+						 <ac_name>Holding Ltd</ac_name>
+						 <ac_id>71fb89cb-92ad-4973-8293-d43f1cd98673</ac_id>
+						 <ac_phone/>
+						 <ac_link>http://gvsandbox01/Gold-VisionThorne/goldvision.aspx?page=popthru&amp;killwindow=1&amp;action=OpenAccount&amp;actiondata=71fb89cb-92ad-4973-8293-d43f1cd98673</ac_link>
+						 <contacts>
+							<contact id="ca194711-f378-48c4-88f2-b8ae22207091">
+							   <acc_name>Joe Bloggs</acc_name>
+							   <acc_id>ca194711-f378-48c4-88f2-b8ae22207091</acc_id>
+							   <acc_phone>01234 567890</acc_phone>
+							   <acc_mobile/>
+							   <acc_link>http://gvsandbox01/Gold-VisionThorne/goldvision.aspx?page=popthru&amp;killwindow=1&amp;action=OpenContact&amp;actiondata=ca194711-f378-48c4-88f2-b8ae22207091</acc_link>
+							   <acc_match>true</acc_match>
+							</contact>
+						 </contacts>
+					  </account>
+				   </list>
+				</gvdata>
+			 </LookupPhoneNumberResult>
+			 <success>true</success>
+			 <message/>
+		  </LookupPhoneNumberResponse>
+	   </soap:Body>
+	</soap:Envelope>
+    
