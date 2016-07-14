@@ -23,13 +23,9 @@ Seminars
    :alt: Gold-Vision Seminar Model Diagram
    :align: center
 
-As you can see, things can become a little more difficult if you are looking to create a new Seminar Session Attendee record compared to a simple Contact record. By looking at the above diagram, to create a new Seminar Session Attendee record in Gold-Vision, you will need to have a Seminar Session and a Seminar Booking Attendee. However, the Seminar Session is dependant on a Seminar of which is dependant on an Account. Also, the Seminar Booking Attendee is dependant on a Seminar Booking of which is dependant on a Seminar Session and an Account.
+As you can see, things can become a little more difficult if you are looking to create a new Seminar Session Attendee record compared to a simple Contact record. By looking at the above diagram, to create a new Seminar Session Attendee record in Gold-Vision, you will need to have a Seminar Session and a Seminar Booking Attendee. However, the Seminar Session is dependant on a Seminar. Also, the Seminar Booking Attendee is dependant on a Seminar Booking of which is dependant on a Seminar and an Account.
 
 Therefore, to create a Seminar Session Attendee record, you are required to have a Seminar Session, Seminar Booking Attendee, Seminar Booking, Seminar and Account. In contrast, to create a Contact, you are only required to have an Account.
-   
-.. note::
-
-    **Campaigns** and **Leads** can be added into Gold-Vision without the need of an **Account**. The contacts that are added to a **Campaign** will be linked to an **Account**. **Leads** exist as a separate module to Gold-Vision under **Leads Management**. 
    
 .. warning::
 
@@ -311,7 +307,7 @@ First of all we are going to create a Seminar. This is the request to be made:
 	   </soapenv:Body>
 	</soapenv:Envelope>
 
-The above request will create a Seminar called 'Sales Demo' for the Account 'Holding Ltd'.
+The above request will create a Seminar called 'Sales Demo' for the Account 'Holding Ltd'. The AC_ID is an optional field.
 
 Now we have a Seminar, the next step would be to create a Seminar Session for our attendee to attend. This is the request that will be made:
 
