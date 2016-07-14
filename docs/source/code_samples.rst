@@ -107,7 +107,7 @@ Finally, this function simply associates the above functions with the 'glink' ob
 	
 .. note::
 
-    A Javascript example that interacts with the Gold-Link API can be found here: `Javascript Example <https://github.com/GVThorne/GoldLinkAPI/tree/master/Javascript%20Example>`_
+    A Javascript example that interacts with the Gold-Link API can be found here: `Javascript Example <https://github.com/GVThorne/GoldLinkAPI/tree/master/javascript_example>`_
 	
 ***
 PHP
@@ -200,7 +200,7 @@ We can now make requests using PHP. The following example will make a :ref:`GetV
 	
 .. note::
 
-    A PHP example that interacts with the Gold-Link API can be found here: `PHP Example <https://github.com/GVThorne/GoldLinkAPI/tree/master/PHP%20Example>`_
+    A PHP example that interacts with the Gold-Link API can be found here: `PHP Example <https://github.com/GVThorne/GoldLinkAPI/tree/master/php_example>`_
 	
 **
 C#
