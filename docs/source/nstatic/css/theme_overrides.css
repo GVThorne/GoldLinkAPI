@@ -5188,7 +5188,8 @@ div[class^='highlight'] pre {
 }
 
 .wy-breadcrumbs li.wy-breadcrumbs-aside {
-    float: right
+    float: right;
+	display:none;
 }
 
 .wy-breadcrumbs li a {
@@ -5710,6 +5711,10 @@ footer span.commit .rst-content tt,
     background: none;
     border: none;
     color: #999
+}
+
+footer span.commit {
+	display:none;
 }
 
 .rst-footer-buttons {
