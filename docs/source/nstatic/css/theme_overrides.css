@@ -5712,6 +5712,10 @@ footer span.commit .rst-content tt,
     color: #999
 }
 
+footer span.commit {
+	display:none;
+}
+
 .rst-footer-buttons {
     *zoom: 1
 }
