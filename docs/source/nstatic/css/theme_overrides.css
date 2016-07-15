@@ -6060,7 +6060,8 @@ footer span.commit {
 }
 
 .rst-content .line-block {
-    margin-left: 24px
+    font-style: italic;
+	font-size: 12px;
 }
 
 .rst-content .topic-title {
@@ -6451,6 +6452,14 @@ span[id*='MathJax-Span'] {
     font-style: normal;
     font-weight: 700;
     src: local("Roboto Slab Bold"), local("RobotoSlab-Bold"), url(../fonts/RobotoSlab-Bold.ttf) format("truetype")
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
 }
 
 

@@ -8,6 +8,7 @@ Gold-Link API
    
 .. toctree::
    :maxdepth: 2
+   :includehidden:
 
    getting_started
    methods

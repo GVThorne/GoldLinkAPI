@@ -1,21 +1,21 @@
 Getting Started
 ===============
 
-****************
-About the API?
-****************
+************
+Introduction
+************
 
 The Gold-Link API is a SOAP based Web Service that is installed as part of the core product. The API is used by sending XML requests over the HTTP protocol.
 
 In order to use the API you must be using a logical programming language that supports SOAP Web Service interoperability. The recommended choice on a Windows platform is to use .NET Framework and on a Linux platform is to use PHP. 
 
 .. note:: 
-    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Reference" option.
+    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Reference" option. More information on how to use this feature can be found here -  `Microsoft Visual Studios - Add Web Reference <https://msdn.microsoft.com/en-us/library/bb628649.aspx>`_
 
 **********
 Connecting
 **********
-The API needs to be enabled through the product licence. If the API is not enabled for your installation or instance, please contact Gold-Vision Support at support@gold-vision.com or **+44(0) 1788 511 110**
+The API needs to be enabled through the product licence. If the API is not enabled for your installation or instance, please contact Gold-Vision Support at support@gold-vision.com or **+44(0) 1788 511 110** (UK & Europe) or **+1 (647) 494 9870** (North America) | **+1 (877)673 1230** (Toll-Free)
 
 Address
 #######
@@ -27,21 +27,23 @@ You can access the web service by using the URL::
 For example::
 
     https://example.goldvisioncrm.com/gold-link/goldlink.asmx
+	
+.. note::
+
+    * The Gold-Vision API is built into individual implementations and therefore the URL will be unique for a particular install.
+    * Visiting the web service URL will let you view a list of the available methods through the API.
 
 Authentication
 ##############
 
 Authentication is performed using NTLM Authentication. Therefore, to use the API, the user's credentials must match that of a valid Gold-Vision user.
 
-.. note::
-
-    You can also visit the web service URL to view a list of the available methods through the API.
 
 *****************
 HTTP SOAP Example
 *****************
 
-The following is a sample SOAP 1.2 request and response for the method :ref:`AddItem`. The placeholders shown needs to be replaced with actual values. This example was found by visiting the Gold-Link URL and selecting the :ref:`AddItem` method, you can obtain similar examples for the other methods.
+The following is a sample SOAP request and response for the method :ref:`AddItem`.
 
 **Request**
 
@@ -50,17 +52,26 @@ The following is a sample SOAP 1.2 request and response for the method :ref:`Add
     POST /example.goldvisioncrm.com/gold-link/goldlink.asmx HTTP/1.1
 	Host: example.goldvisioncrm.com
 	Content-Type: application/soap+xml; charset=utf-8
-	Content-Length: length
-
-	<?xml version="1.0" encoding="utf-8"?>
-	<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-		<soap12:Body>
-			<AddItem xmlns="http://service.gold-vision.com/gold-link">
-				<objectType>Root or Account or Contact or AccountActivity or ContactActivity or OpportunityActivity or ProjectActivity or Opportunity or Quote or Project or Profile or Product or Extension or SageSopData or SagePopData or QuoteLines or Note or SageProduct or Seminar or SeminarSession or SeminarBooking or SeminarSessionAttendee or SeminarBookingProduct or SeminarSessionProduct or IntegrationLinkList or SeminarBookingAttendee or ExchequerTxData or QuoteItem or Campaign or FormData or Appointment or AccountFinancialEntity</objectType>
-				<xmlData>xml</xmlData>
-			</AddItem>
-		</soap12:Body>
-	</soap12:Envelope>
+	
+    <?xml version="1.0" encoding="utf-8"?>
+	<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://service.gold-vision.com/gold-link">
+	<soap:Body>
+		<AddItem xmlns="http://service.gold-vision.com/gold-link">
+		 <objectType>Account</objectType>
+		 <xmlData>
+		  <gvdata xmlns="">
+		   <record>
+		    <field name="SUMMARY">Holding Ltd</field>
+		    <field name="NAME">Holding Ltd</field>
+		    <field name="ADDRESS_1">321 New Street</field>
+		    <field name="TOWN">London</field>
+		    <field name="COUNTRY">United Kingdom</field>
+		   </record>
+		  </gvdata>
+		 </xmlData>
+		</AddItem>
+	</soap:Body>
+    </soap:Envelope>
 
 **Response**
 
@@ -71,17 +82,28 @@ The following is a sample SOAP 1.2 request and response for the method :ref:`Add
 	Content-Length: length
 
 	<?xml version="1.0" encoding="utf-8"?>
-	<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-		<soap12:Body>
+	<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://service.gold-vision.com/gold-link">
+		<soap:Body>
 			<AddItemResponse xmlns="http://service.gold-vision.com/gold-link">
-				<AddItemResult>boolean</AddItemResult>
-				<returnId>string</returnId>
-				<success>boolean</success>
-				<message>string</message>
+				<AddItemResult>true</AddItemResult>
+				<returnId>71fb89cb-92ad-4973-8293-d43f1cd98673</returnId>
+				<success>true</success>
+				<message></message>
 			</AddItemResponse>
-		</soap12:Body>
-	</soap12:Envelope>
+		</soap:Body>
+	</soap:Envelope>
 
+********************
+SOAP Request Testing
+********************
+If you are unfamiliar with making SOAP requests, a good point to start with is to use a Functional Testing solution such as  `SoapUI <https://www.soapui.org/>`_.
+
+By using a solution such as **SoapUI**, you are able to send requests to Gold-Link and observe the responses within a user friendly user interface.
+
+.. note::
+
+    Throughout the rest of this documentation, all of the SOAP requests and responses have been generated using a Functional Testing solution.
+	
 ***************
 Handling Errors
 ***************
@@ -89,4 +111,6 @@ Handling Errors
 Part of the XML response for any API call is **success** and **message**. If the API call failed for any reason, **success** will be false and **message** will contain the error message.
 
 The Gold-Vision log files will contain detailed error messages and can be accessed through **Settings > Logging** within the Administration Console. The file containing the Gold-Link errors will be labelled as **Gold-Link_{date}.txt**.
+
+
 
