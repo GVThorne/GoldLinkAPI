@@ -5,7 +5,7 @@ Code Samples
 Javascript
 **********
 
-First of all we are going to generate a XML HTTP request object and declare the API endpoints as follows:
+First a XML HTTP request object will be generated and the API endpoints will be declared as follows:
 
 .. code-block:: javascript
 
@@ -35,7 +35,7 @@ First of all we are going to generate a XML HTTP request object and declare the 
 	} catch(e) { alert('Error: ' + e.message); }
 	}
 	
-We will then create the object that will be executed to make the request. It will take in a SOAP Action and return with the response. This is what it will look like:
+Then, create the object that will be executed to make the request. It will take in a SOAP Action and return with the response. This is what it will look like:
 
 .. code-block:: javascript
 
@@ -69,7 +69,7 @@ We will then create the object that will be executed to make the request. It wil
 	http_glink.send(s);
 	}
 
-We can then create our functions to make the SOAP requests. For example, a :ref:`FindItem` request will look like this:
+Now, create our functions to make the SOAP requests. For example, a :ref:`FindItem` request will look like this:
 
 .. code-block:: javascript
 
@@ -113,7 +113,7 @@ Finally, this function simply associates the above functions with the 'glink' ob
 PHP
 ***
 
-First of all, we will look to create a PHP file that contains the authentication details of the SOAP request. This file will be called **GVGoldLinkNTLM.php**.
+First, a PHP file that contains the authentication details of the SOAP request will be creatd. This file will be called **GVGoldLinkNTLM.php**.
 
 .. code-block:: php
 
@@ -124,7 +124,7 @@ First of all, we will look to create a PHP file that contains the authentication
     }
 	?>
 
-We now want to create a method for making the requests in a separate file. The following will be contained within a PHP file called **NTLMSoapClient.php**:
+Now, the creation of a method for making the requests will exist in a separate file. The following request will be contained within a PHP file called **NTLMSoapClient.php**:
 
 .. code-block:: php
 
@@ -160,7 +160,7 @@ We now want to create a method for making the requests in a separate file. The f
     }
 	?>
 	
-We can now make requests using PHP. The following example will make a :ref:`GetVersion` Gold-Link request:
+Request can now be made using PHP. The following example will make a :ref:`GetVersion` Gold-Link request:
 
 .. code-block:: php
 
@@ -208,7 +208,7 @@ C#
 
 For this code example, I have used the **Add Web Reference** feature within Visual Studios. This then allows me to create a Data Access model that handles the authentication and method calls.
 
-I will be calling my model **GVDataModel** and it will contain the following structure:
+A model called **GVDataModel** will be created and it will contain the following structure:
 
 .. code-block:: csharp
 
@@ -382,7 +382,7 @@ This is where most of the actual Gold-Link requests will be made.
 Public Methods
 ##############
 
-Finally, we have the Public Methods section for the list of methods available to call within your applications.
+Finally, the Public Methods section will contain te list of methods available to call within your applications.
 
 .. code-block:: csharp
 

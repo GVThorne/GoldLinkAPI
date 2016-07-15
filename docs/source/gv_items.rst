@@ -7,7 +7,7 @@ Gold-Vision Items
 Gold-Vision Model Diagram
 *************************
 
-The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, if you were to create a new Contact in Gold-Vision, you can see that it is dependant on the Account item. Therefore, to create a new Contact, you will have to attach it to an existing Account. 
+The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, to create a new Contact in Gold-Vision, it can be seen that it is dependant on the Account item. Therefore, creating a new Contact will require you to pass an AC_ID of an existing Account in the request. 
 
 Core Items
 ##########
@@ -23,9 +23,9 @@ Seminars
    :alt: Gold-Vision Seminar Model Diagram
    :align: center
 
-As you can see, things can become a little more difficult if you are looking to create a new Seminar Session Attendee record compared to a simple Contact record. By looking at the above diagram, to create a new Seminar Session Attendee record in Gold-Vision, you will need to have a Seminar Session and a Seminar Booking Attendee. However, the Seminar Session is dependant on a Seminar. Also, the Seminar Booking Attendee is dependant on a Seminar Booking of which is dependant on a Seminar and an Account.
+Things can become a little more difficult if creating a new Seminar Session Attendee record compared to a simple Contact record. By looking at the above diagram, creating a new Seminar Session Attendee record in Gold-Vision requires you to have a Seminar Session and a Seminar Booking Attendee. However, the Seminar Session requires a Seminar. Also, the Seminar Booking Attendee is dependant on a Seminar Booking of which is dependant on a Seminar and an Account.
 
-Therefore, to create a Seminar Session Attendee record, you are required to have a Seminar Session, Seminar Booking Attendee, Seminar Booking, Seminar and Account. In contrast, to create a Contact, you are only required to have an Account.
+Therefore, creating a Seminar Session Attendee record requires you to have a Seminar Session, Seminar Booking Attendee, Seminar Booking, Seminar and Account. In contrast, creating a Contact only requires an Account.
    
 .. warning::
 
@@ -34,12 +34,12 @@ Therefore, to create a Seminar Session Attendee record, you are required to have
 *******
 Account
 *******
-For the following example, I will be looking to create a new Account given that it does not exist already. The Account I wish to add is going to be called **Holdings Ltd**.
+For this example, an Account called **Holdings Ltd** will be added into Gold-Vision.
 
-Finding the Account
-###################
+Finding an Existing Account
+###########################
 
-First of all I am going to make a Gold-Link request using :ref:`FindItem` to find out if I already have an account with the name **Holdings Ltd**. To do this, I will make the following request:
+First make a Gold-Link request using :ref:`FindItem` to find any Accounts that already have the name **Holdings Ltd**.
 
 .. code-block:: html
 
@@ -75,14 +75,14 @@ This is the response:
 	   </soap:Body>
 	</soap:Envelope>
 	
-As you can see, the response has returned with a ``success`` result of true indicating the request was successful but also with a ``list`` attribute within the ``FindItemResult`` node. This ``list`` attribute indicates how many records have returned with a SUMMARY of **Holdings Ltd**.
+The response has returned with a ``success`` result of true indicating the request was successful but also with a ``list`` attribute within the ``FindItemResult`` node. This ``list`` attribute indicates how many records have returned with a SUMMARY of **Holdings Ltd**.
 
-From this result, it is apparent that there is no account with the name **Holdings Ltd** already in my Gold-Vision so I can then proceed to add the new account.
+There is no account with the name **Holdings Ltd** already in my Gold-Vision so the process to add a new Account can continue.
 
 Updating an Account
 ###################
 
-In the event that my :ref:`FindItem` request does return a result, you may decide that instead of creating a new account with the same name, you want to update the existing one instead. For example we may want to change ADDRESS_1 from **123 Old Street** to **321 New Street**.  For this situation the :ref:`FindItem` response will look something like this:
+In the event that a :ref:`FindItem` request does return a ``list`` result set, it may be wise to update an existing Account rather than add a new one. For this situation the :ref:`FindItem` request above will return a response like this:
 
 .. code-block:: html
 
@@ -102,7 +102,7 @@ In the event that my :ref:`FindItem` request does return a result, you may decid
 	   </soap:Body>
 	</soap:Envelope>
 	
-Using the ``record id`` from the response, we can use :ref:`GetItem` to return all the account information for **Holding Ltd**. The request will look like this:
+Using the ``record id`` from the response, a :ref:`GetItem` request can be used to return all the account information for **Holding Ltd**. The request will look like this:
 
 .. code-block:: html
 
@@ -157,9 +157,9 @@ with the resulting response showing as:
 	   </soap:Body>
 	</soap:Envelope>
 	
-As you can see, the resulting ``gvdata`` contains all the account information about **Holdings Ltd** including the ADDRESS_1 field of which has a value of **123 Old Street**.
+The resulting ``gvdata`` contains all the account information about **Holdings Ltd** including the ADDRESS_1 field of which has a value of **123 Old Street**.
 
-To update this field to **321 New Street**, we are going to use the ADDRESS_1 field and include it in an :ref:`UpdateItem` request like below:
+To update this field to **321 New Street**, an :ref:`UpdateItem` request can be made that will include the ADDRESS_1 field, like below:
 
 .. code-block:: html
 
@@ -179,12 +179,12 @@ To update this field to **321 New Street**, we are going to use the ADDRESS_1 fi
 	   </soap:Body>
 	</soap:Envelope>
 	
-This should return with a response in which ``success`` has resulted in **true**. You should now find that the ADDRESS_1 field has been updated from **123 Old Street** to **321 New Street**.
+Within Gold-Vision, the ADDRESS_1 field will have been updated from **123 Old Street** to **321 New Street**.
 
 Creating a new Account
 ######################
 
-In the event that you have made a :ref:`FindItem` request that was successful but returned 0 Accounts with a SUMMARY of **Holding Ltd**, you may feel it is now safe to create a new Account with the same name. To do so, you would have to make an :ref:`AddItem` request as follows:
+To create a new Account, a :ref:`AddItem` request can be made.
 
 .. code-block:: html
 
@@ -220,9 +220,9 @@ As a result, the response will return with the Account ID of the newly created A
 Contact
 *******
 
-First of all, before we look to create a new contact we need to have a look at the :ref:`GVModelDiagram` at the top of this page. As we can see, A Contact record is dependant on an Account record. Therefore, to create a Contact in Gold-Vision via Gold-Link, we need to provide an **AC_ID** with it.
+Looking at the :ref:`GVModelDiagram` at the top of this page, it's apparent that a Contact record is dependant on an Account record. Therefore, to create a Contact in Gold-Vision via Gold-Link, an **AC_ID** is required within the request.
 
-So the first thing to do would be to make a :ref:`FindItem` request to get an **AC_ID** of an Account. When creating a new Contact, this **AC_ID** is required to be included otherwise the request will fail. The following request is to add a **Joe Bloggs** to the **Holdings Ltd** Account.
+First, a :ref:`FindItem` request can be made to get an **AC_ID** of an Account. The following request will add **Joe Bloggs** to the Account **Holdings Ltd**.
 
 .. code-block:: html
 
@@ -244,15 +244,15 @@ So the first thing to do would be to make a :ref:`FindItem` request to get an **
 	   </soapenv:Body>
 	</soapenv:Envelope>
 
-As a result, the ``returnId`` node will contain the new **ACC_ID** of the new Contact. 
+The ``returnId`` node will contain the new **ACC_ID** of the new Contact. 
 
 ***********
 Opportunity
 ***********
 
-To create an Opportunity, you are required to provide an **AC_ID** with the :ref:`AddItem` request. However, Opportunities, Activities, Projects, Quotes and Profiles allow you to attach a Contact from the related Account as well. Although, this isn't essential and if no **ACC_ID** is provided, the Contact field will display as **Not Assigned**.
+An **AC_ID** is required with the :ref:`AddItem` request to create a new Opportunity. However, Opportunities, Activities, Projects, Quotes and Profiles also allow you to attach a Contact from the related Account. Although, this isn't essential and if no **ACC_ID** is provided, the Contact field will display as **Not Assigned**.
 
-Therefore, the process for creating an Opportunity with a Contact assigned will require you to make two :ref:`FindItem` requests. The first will be to find the **AC_ID** of an Account and the second will be to find a Contact's **ACC_ID** that has that also has this **AC_ID**. An :ref:`AddItem` request can then be made to create an Opportunity with an **AC_ID** and an **ACC_ID**. The request will look like this:
+The process for creating an Opportunity with a Contact assigned will require you to make two :ref:`FindItem` requests. The first will be to find the **AC_ID** of an Account and the second will be to find a Contact's **ACC_ID** that has that also has this **AC_ID**. An :ref:`AddItem` request can then be made to create an Opportunity with an **AC_ID** and an **ACC_ID**. The request will look like this:
 
 .. code-block:: html
 
@@ -274,19 +274,19 @@ Therefore, the process for creating an Opportunity with a Contact assigned will 
 	   </soapenv:Body>
 	</soapenv:Envelope>
 	
-As a result, the ``returnId`` node will contain the new **OP_ID** of the new Opportunity and the following record will appear within your Gold-Vision:
+The ``returnId`` node will contain the new **OP_ID** of the new Opportunity and the following record will appear within your Gold-Vision:
 
 .. image:: images/SalesOppRecord.PNG
    :alt: Sales Opportunity Record
    :align: center
    
-*******
-Seminar
-*******
+***************
+Events/Seminars
+***************
 
-For this section we are going to run through the process required to add a Seminar Session Attendee into Gold-Vision. Looking at the :ref:`GVModelDiagram` we can see that there are a  lot of requirements for a Seminar Session Attendee to exist.
+For this example a Seminar Session Attendee will be added into Gold-Vision. Looking at the :ref:`GVModelDiagram`, it is apparent that there are a lot of requirements for a Seminar Session Attendee to exist.
 
-First of all we are going to create a Seminar. This is the request to be made:
+First, an :ref:`AddItem` request will be made to create a Seminar.
 
 .. code-block:: html
 
@@ -307,9 +307,9 @@ First of all we are going to create a Seminar. This is the request to be made:
 	   </soapenv:Body>
 	</soapenv:Envelope>
 
-The above request will create a Seminar called 'Sales Demo' for the Account 'Holding Ltd'. The AC_ID is an optional field.
+This request will create a Seminar called 'Sales Demo' for the Account 'Holding Ltd'. The AC_ID is an optional field.
 
-Now we have a Seminar, the next step would be to create a Seminar Session for our attendee to attend. This is the request that will be made:
+Now there is a Seminar, the next step would be to create a Seminar Session for our attendee to attend. This is the request that will be made:
 
 .. code-block:: html
 
@@ -335,9 +335,9 @@ Now we have a Seminar, the next step would be to create a Seminar Session for ou
 
     A Seminar Session only requires a SUMMARY and SEM_ID. However, in order to make a Seminar Booking, the Seminar Session is required to have places available. Therefore, I have created a Seminar Session that has 10 places available to allow for bookings to take place.
 	
-Now we have our Seminar Session, again by looking at the :ref:`GVModelDiagram`, we can see that the only other dependency for a Seminar Session Attendee is to have a Seminar Booking Attendee.
+Now there is a Seminar Session, again by looking at the :ref:`GVModelDiagram`, it is apparent that the only other dependency for a Seminar Session Attendee is the existance of a Seminar Booking Attendee.
 
-Before a Seminar Booking Attendee can be made, a Seminar Booking is required to exist. I will create a Seminar Booking with the following request:
+Before a Seminar Booking Attendee can be made, a Seminar Booking is required to exist. This request will create a Seminar Booking in Gold-Vision:
 
 .. code-block:: html
 
@@ -364,7 +364,7 @@ Before a Seminar Booking Attendee can be made, a Seminar Booking is required to 
 
     Although the request has been successful, for a Seminar Booking to appear in Gold-Vision, it needs to have a Seminar Booking Attendee. However, a Seminar Booking Attendee request cannot be made beforehand as it is required to have a SEMB_ID.
 	
-The next step to be made will be to create a Seminar Booking Attendee for the Seminar Booking that we have just created:
+The next step to be made will be to create a Seminar Booking Attendee for the Seminar Booking that has just been created:
 
 .. code-block:: html
 
@@ -386,9 +386,9 @@ The next step to be made will be to create a Seminar Booking Attendee for the Se
 	   </soapenv:Body>
 	</soapenv:Envelope>
 	
-The above request has now created a Seminar Booking Attendee using the Contact 'Joe Bloggs'. The required fields for this request are SEMB_ID and AC_ID. If no ACC_ID is provided, a Seminar Booking Attendee will be added as 'Anonymous'.
+The above request has now created a Seminar Booking Attendee using the Contact 'Joe Bloggs'. The required fields for this request are SEMB_ID and AC_ID. If no ACC_ID is provided, the Seminar Booking Attendee will be added as 'Anonymous'.
 
-Now that all the prerequisites are met, we can finally make a request to add a new Seminar Session Attendee. This is the request that will be made:
+Now that all the prerequisites are met, a final request can be made to add a new Seminar Session Attendee. This is the request that will be made:
 
 .. code-block:: html
 
@@ -422,7 +422,7 @@ Phone Systems
 LogCall
 ########
 
-It is possible to log incoming and outgoing telephone calls within Gold-Vision using Gold-Link. To do so, you can make a **LogCall** request like below:
+It is possible to log incoming and outgoing telephone calls within Gold-Vision using Gold-Link. To do so, a **LogCall** request can be made like below:
 
 .. code-block:: html
 
@@ -484,6 +484,7 @@ This request is useful when looking to return all matching Contacts and Accounts
 	   </soapenv:Body>
 	</soapenv:Envelope>
 	
+
 The response will return a ``list`` node that will contain both ``account`` and ``contact`` records if any match the telephone number sent with the original request. This is the sort of response that you are likely to receive:
 
 .. code-block:: html
