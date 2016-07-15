@@ -206,7 +206,7 @@ Request can now be made using PHP. The following example will make a :ref:`GetVe
 C#
 **
 
-For this code example, I have used the **Add Web Reference** feature within Visual Studios. This then allows me to create a Data Access model that handles the authentication and method calls.
+For this code example, I have used the **Add Web Reference** feature within Visual Studio. This then allows me to create a Data Access model that handles the authentication and method calls.
 
 A model called **GVDataModel** will be created and it will contain the following structure:
 
