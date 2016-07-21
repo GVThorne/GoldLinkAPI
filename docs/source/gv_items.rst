@@ -7,7 +7,7 @@ Gold-Vision Items
 Gold-Vision Model Diagram
 *************************
 
-The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, to create a new Contact in Gold-Vision, it can be seen that it is dependant on the Account item. Therefore, creating a new Contact will require you to pass an AC_ID of an existing Account in the request. 
+The diagram below helps you to gain a basic understanding of the structure for Gold-Vision items. So for example, to create a new Contact in Gold-Vision, it can be seen that it is dependent on the Account item. Therefore, creating a new Contact will require you to pass an AC_ID of an existing Account in the request. 
 
 Core Items
 ##########
@@ -23,7 +23,7 @@ Seminars
    :alt: Gold-Vision Seminar Model Diagram
    :align: center
 
-Things can become a little more difficult if creating a new Seminar Session Attendee record compared to a simple Contact record. By looking at the above diagram, creating a new Seminar Session Attendee record in Gold-Vision requires you to have a Seminar Session and a Seminar Booking Attendee. However, the Seminar Session requires a Seminar. Also, the Seminar Booking Attendee is dependant on a Seminar Booking of which is dependant on a Seminar and an Account.
+Things can become a little more difficult if creating a new Seminar Session Attendee record compared to a simple Contact record. By looking at the above diagram, creating a new Seminar Session Attendee record in Gold-Vision requires you to have a Seminar Session and a Seminar Booking Attendee. However, the Seminar Session requires a Seminar. Also, the Seminar Booking Attendee is dependent on a Seminar Booking of which is dependent on a Seminar and an Account.
 
 Therefore, creating a Seminar Session Attendee record requires you to have a Seminar Session, Seminar Booking Attendee, Seminar Booking, Seminar and Account. In contrast, creating a Contact only requires an Account.
    
@@ -220,7 +220,7 @@ As a result, the response will return with the Account ID of the newly created A
 Contact
 *******
 
-Looking at the :ref:`GVModelDiagram` at the top of this page, it's apparent that a Contact record is dependant on an Account record. Therefore, to create a Contact in Gold-Vision via Gold-Link, an **AC_ID** is required within the request.
+Looking at the :ref:`GVModelDiagram` at the top of this page, it's apparent that a Contact record is dependent on an Account record. Therefore, to create a Contact in Gold-Vision via Gold-Link, an **AC_ID** is required within the request.
 
 First, a :ref:`FindItem` request can be made to get an **AC_ID** of an Account. The following request will add **Joe Bloggs** to the Account **Holdings Ltd**.
 
@@ -335,7 +335,7 @@ Now there is a Seminar, the next step would be to create a Seminar Session for o
 
     A Seminar Session only requires a SUMMARY and SEM_ID. However, in order to make a Seminar Booking, the Seminar Session is required to have places available. Therefore, I have created a Seminar Session that has 10 places available to allow for bookings to take place.
 	
-Now there is a Seminar Session, again by looking at the :ref:`GVModelDiagram`, it is apparent that the only other dependency for a Seminar Session Attendee is the existance of a Seminar Booking Attendee.
+Now there is a Seminar Session, again by looking at the :ref:`GVModelDiagram`, it is apparent that the only other dependency for a Seminar Session Attendee is the existence of a Seminar Booking Attendee.
 
 Before a Seminar Booking Attendee can be made, a Seminar Booking is required to exist. This request will create a Seminar Booking in Gold-Vision:
 

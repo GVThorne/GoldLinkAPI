@@ -4069,7 +4069,7 @@ textarea {
     overflow: auto;
     vertical-align: top;
     width: 100%;
-    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif
+    font-family: "Helvetica","Arial","Verdana","sans-serif"
 }
 
 select,
@@ -4588,9 +4588,9 @@ html {
 }
 
 body {
-    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Helvetica","Arial","Verdana","sans-serif";
     font-weight: normal;
-    color: #404040;
+	font-size: 15px;
     min-height: 100%;
     overflow-x: hidden;
     background: #edf0f2
@@ -4675,13 +4675,12 @@ h6,
 legend {
     margin-top: 0;
     font-weight: 700;
-    font-family: "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif
+    font-family: "Helvetica","Arial","Verdana","sans-serif"
 }
 
 p {
     line-height: 24px;
     margin: 0;
-    font-size: 16px;
     margin-bottom: 24px
 }
 
@@ -5541,7 +5540,8 @@ div[class^='highlight'] pre {
 
 .wy-side-nav-search>a.icon img.logo,
 .wy-side-nav-search .wy-dropdown>a.icon img.logo {
-    margin-top: 0.85em
+    margin-top: 0.85em;
+	width: 175px
 }
 
 .wy-side-nav-search>div.version {
