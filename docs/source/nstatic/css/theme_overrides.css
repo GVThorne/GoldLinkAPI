@@ -6464,6 +6464,7 @@ span[id*='MathJax-Span'] {
 
 div.wy-menu.rst-pro {
 	display:none;
+	visibility: hidden;
 }
 
 
