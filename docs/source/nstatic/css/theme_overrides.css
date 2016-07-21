@@ -6462,5 +6462,9 @@ span[id*='MathJax-Span'] {
 	color: red;
 }
 
+div.wy-menu.rst-pro {
+	display:none;
+}
+
 
 /*# sourceMappingURL=theme.css.map */
