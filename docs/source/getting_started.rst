@@ -10,7 +10,7 @@ The Gold-Link API is a SOAP based Web Service that is installed as part of the c
 In order to use the API you must be using a logical programming language that supports SOAP Web Service interoperability. The recommended choice on a Windows platform is to use .NET Framework and on a Linux platform is to use PHP. 
 
 .. note:: 
-    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Reference" option. More information on how to use this feature can be found here -  `Microsoft Visual Studios - Add Web Reference <https://msdn.microsoft.com/en-us/library/bb628649.aspx>`_
+    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Reference" option. More information on how to use this feature can be found here -  `Microsoft Visual Studio - Add Web Reference <https://msdn.microsoft.com/en-us/library/bb628649.aspx>`_
 
 **********
 Connecting
