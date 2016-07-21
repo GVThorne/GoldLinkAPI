@@ -74,14 +74,21 @@ This method is used to return a list of records from Gold-Vision that match the 
 
 .. role:: green
 
-=============================================		========================================================
-Attribute (:red:`Required`/:green:`Optional`)		Type
-=============================================		========================================================
-:red:`objectType`	 	 							:ref:`ObjectType`
-:green:`filter`										:green:`XML e.g. <filter dbcolumn="" value="" type=""></filter>`
-:green:`rowlimit`									:green:`XML e.g. <rowlimit value=""></rowlimit>`
-:green:`sort`										:green:`XML e.g. <sort dbcolumn="" order=""></sort>`
-=============================================		========================================================
++----------------------------------------------+---------------------------------------------------------+
+|Attribute (:red:`Required`/:green:`Optional`) |Type                                                     |
++==============================================+=========================================================+
+|:red:`objectType`                             | :ref:`ObjectType`                                       |
++----------------------------------------------+---------------------------------------------------------+
+|:red:`filters`                                |:red:`<filters>`                                         |
+|                                              |                                                         |
+|                                              | :green:`<filter dbcolumn="" value="" type=""></filter>` |
+|                                              |                                                         |
+|                                              | :green:`<rowlimit value=""></rowlimit>`                 |
+|                                              |                                                         |
+|                                              | :green:`<sort dbcolumn="" order=""></sort>`             |
+|                                              |                                                         |
+|                                              |:red:`</filters>`                                        |
++----------------------------------------------+---------------------------------------------------------+
 
 
 **Response**
@@ -150,7 +157,7 @@ The rowlimit node is used to limit the amount of records returned in the respons
 	   </soapenv:Body>
 	</soapenv:Envelope>
 
-The following request uses all 3 filtering nodes to return 2 Accounts that begin with the letter 'B' and have been sorted in an alphabetically order.
+The following request uses all 3 filtering nodes to return 2 Accounts that begin with the letter 'G' and have been sorted in an alphabetically order.
 
 .. code-block:: html
 
@@ -179,10 +186,9 @@ Here is the response:
 		  <FindItemResponse xmlns="http://service.gold-vision.com/gold-link">
 			 <FindItemResult>
 				<gvdata xmlns="">
-				   <list records="3">
+				   <list records="2">
 					  <record id="4f219888-55c6-405a-95be-60281c14778e" type="Account" ac_id="4f219888-55c6-405a-95be-60281c14778e" summary="General Sales"/>
 					  <record id="b1c966b1-cc83-4594-a68c-c4e6522a5107" type="Account" ac_id="b1c966b1-cc83-4594-a68c-c4e6522a5107" summary="Gold-Vision"/>
-					  <record id="f0da84dc-2a56-40c0-80a2-2960fff69fe2" type="Account" ac_id="f0da84dc-2a56-40c0-80a2-2960fff69fe2" summary="Goldware"/>
 				   </list>
 				</gvdata>
 			 </FindItemResult>
@@ -211,13 +217,13 @@ Attribute (:red:`Required`/:green:`Optional`)		Type
 
 **Response**
 
-==============		========
+==============		==============
 Attribute			Type
-==============		========
-GetItemResult		XML
+==============		==============
+GetItemResult		:ref:`Xml`
 success				Boolean
 message				String
-==============		========
+==============		==============
 
 To make a request using **GetItem**, you will be required to make a request with an ``objectType``, ``id`` and ``returnEmptyFields`` node. The ``returnEmptyFields`` node will accept a value of either **true** (1) or **false** (0). 
 
@@ -284,7 +290,7 @@ This method is used to add a new record into Gold-Vision.
 Attribute (:red:`Required`/:green:`Optional`)	Type
 =============================================	==================================================
 :red:`objectType`	 							 :ref:`ObjectType`
-:red:`xmlData`									:red:`XML`
+:red:`xmlData`									 :ref:`Xml`
 =============================================	==================================================
 
 **Response**
@@ -348,7 +354,7 @@ This method is used to update an existing record in Gold-Vision.
 Attribute (:red:`Required`/:green:`Optional`)	Type
 =============================================	========================================================================================================
 :red:`objectType`	 							 :ref:`ObjectType`
-:red:`xmlData`									:red:`XML`
+:red:`xmlData`									:ref:`Xml`
 :red:`id`										:red:`String`
 :red:`overwrite`								:red:`AllFieldsPresent or AllFieldsPresentExceptBlanks or AllFieldsPresentExceptBlanksWhereTargetEmpty`
 =============================================	========================================================================================================
@@ -418,13 +424,13 @@ Attribute (:red:`Required`/:green:`Optional`)	Type
 
 **Response**
 
-==================		========
+==================		===========
 Attribute				Type
-==================		========
-GetObjectDefResult		XML
+==================		===========
+GetObjectDefResult		:ref:`Xml`
 success					Boolean
 message					String
-==================		========
+==================		===========
 
 The GetObjectDef request only requires you to include the ``objectType`` node with the request. From this, a response will be returned that includes ObjectDef information related to the value included in ``objectType`` such as field names and field labels.
 
