@@ -113,7 +113,7 @@ Finally, this function simply associates the above functions with the 'glink' ob
 PHP
 ***
 
-First, a PHP file that contains the authentication details of the SOAP request will be creatd. This file will be called **GVGoldLinkNTLM.php**.
+First, a PHP file that contains the authentication details of the SOAP request will be created. This file will be called **GVGoldLinkNTLM.php**.
 
 .. code-block:: php
 
@@ -308,7 +308,7 @@ Constructors
 
 This is the most important part of your model. This is where the Gold-Link connection is constructed and where the authentication is made.
 
-The following example is dependant on the Gold-Link URL, Gold-Link Domain, Gold-Link User and Gold-Link Password being set within your application's configuration file.
+The following example is dependent on the Gold-Link URL, Gold-Link Domain, Gold-Link User and Gold-Link Password being set within your application's configuration file.
 
 .. code-block:: csharp
 
@@ -382,7 +382,7 @@ This is where most of the actual Gold-Link requests will be made.
 Public Methods
 ##############
 
-Finally, the Public Methods section will contain te list of methods available to call within your applications.
+Finally, the Public Methods section will contain the list of methods available to call within your application.
 
 .. code-block:: csharp
 
