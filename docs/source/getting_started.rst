@@ -1,6 +1,14 @@
 Getting Started
 ===============
 
+.. |visual_studio| raw:: html
+
+    <a href="https://msdn.microsoft.com/en-us/library/bb628649.aspx" target="_blank">Microsoft Visual Studio - Add Web Reference</a>
+	
+.. |soapui| raw:: html
+
+    <a href="https://www.soapui.org/" target="_blank">SoapUI</a>
+
 ************
 Introduction
 ************
@@ -10,7 +18,7 @@ The Gold-Link API is a SOAP based Web Service that is installed as part of the c
 In order to use the API you must be using a logical programming language that supports SOAP Web Service interoperability. The recommended choice on a Windows platform is to use .NET Framework and on a Linux platform is to use PHP. 
 
 .. note:: 
-    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Reference" option. More information on how to use this feature can be found here -  `Microsoft Visual Studio - Add Web Reference <https://msdn.microsoft.com/en-us/library/bb628649.aspx>`_
+    If using .NET Framework, the Gold-Vision API web service can be automatically integrated using the Visual Studio "Add Web Reference" option. More information on how to use this feature can be found here -  |visual_studio|.
 
 **********
 Connecting
@@ -96,7 +104,7 @@ The following is a sample SOAP request and response for the method :ref:`AddItem
 ********************
 SOAP Request Testing
 ********************
-If you are unfamiliar with making SOAP requests, a good point to start with is to use a Functional Testing solution such as  `SoapUI <https://www.soapui.org/>`_.
+If you are unfamiliar with making SOAP requests, a good point to start with is to use a Functional Testing solution such as  |soapui|.
 
 By using a solution such as **SoapUI**, you are able to send requests to Gold-Link and observe the responses within a user friendly user interface.
 
