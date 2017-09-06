@@ -6462,7 +6462,7 @@ span[id*='MathJax-Span'] {
 	color: red;
 }
 
-div.rst-pro.wy-menu {
+div.rtd-pro.wy-menu, div.rst-pro.wy-menu {
 	display:none;
 	visibility: hidden;
 }
